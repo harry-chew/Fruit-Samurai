@@ -87,6 +87,11 @@ public class GameManager : MonoBehaviour
         {
             GameEvents.FireGameOverEvent(FinalScore);
         }
+        if (arg0.name == "Menu")
+        {
+            Score = 0;
+            FinalScore = Score;
+        }
     }
 
     private void OnDisable()
@@ -99,8 +104,8 @@ public class GameManager : MonoBehaviour
     {
         if (e.EventType == GameEventType.End)
         {
-            Time.timeScale = 0.0f;
             SceneManager.LoadScene("GameOver");
+            GameEvents.GameEvent -= OnGameEvent;
         }
     }
 
